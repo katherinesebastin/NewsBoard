@@ -1,0 +1,13 @@
+# Node / frontend
+node_modules/
+dist/
+.env
+frontend/.env
+frontend/.idea
+frontend/.vscode
+
+# Deno (cache) and backend env
+/deno_cache/
+/.deno/
+backend/.env
+backend/.local
