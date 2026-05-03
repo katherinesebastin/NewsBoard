@@ -4,6 +4,7 @@
 import { Hono } from 'https://deno.land/x/hono@v3.12.0/mod.ts';
 import { cors } from 'https://deno.land/x/hono@v3.12.0/middleware.ts';
 import 'https://deno.land/std@0.201.0/dotenv/load.ts'; // loads backend/.env into Deno.env
+import type { Context } from 'https://deno.land/x/hono@v3.12.0/mod.ts';
 
 const app = new Hono();
 app.use('*', cors()); // allow CORS for local dev
@@ -22,7 +23,7 @@ async function newsApiFetch(path: string, params: Record<string,string>) {
   return json;
 }
 
-app.get('/news/top', async (c) => {
+app.get('/news/top', async (c: Context) => {
   const country = c.req.query('country') || 'us';
   const category = c.req.query('category') || '';
   const pageSize = c.req.query('pageSize') || '20';
@@ -31,7 +32,7 @@ app.get('/news/top', async (c) => {
   return c.json(data);
 });
 
-app.get('/news/search', async (c) => {
+app.get('/news/search', async (c: Context) => {
   const q = c.req.query('q') || '';
   const from = c.req.query('from') || '';
   const sortBy = c.req.query('sortBy') || 'publishedAt';
@@ -41,7 +42,7 @@ app.get('/news/search', async (c) => {
   return c.json(data);
 });
 
-app.get('/', (c) => c.text('News proxy running'));
+app.get('/', (c: Context) => c.text('News proxy running'));
 
 // Start server via Deno.serve: pass the Hono fetch handler and options
 const port = 8000;
