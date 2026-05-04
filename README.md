@@ -1,36 +1,41 @@
 # NewsBoard
 
-NewsBoard is a simple and professional application that retrieves and displays news using the NewsAPI.org service.
-The app allows users to:
-- View top headlines
-- Search news using any keyword
-- Browse articles in a clean UI
-The project is built using Deno + Hono for the backend and React + Vite for the frontend.
+NewsBoard is a simple news web app. It shows the latest news headlines and also lets users search for news using any keyword.  
+It uses:  
+- Deno + Hono for the backend  
+- React + Vite for the frontend  
+- NewsAPI.org to get real news data  
 
 ## Features
 
-### 1. Get Current Top Headlines
+### 1. Top Headlines
 
-Fetches the latest top headlines  
-Uses backend route: GET /news/top?country=us  
+- Shows latest news articles
+- Default country is US
+- Example endpoint: `GET /news/top?country=us`
 
-### 2. Search News by Keyword
+### 2. Search News 
 
-User can search any news topic  
-Uses backend route: GET /news/search?q=keyword  
+- User can search any topic  
+- Example endpoint: `GET /news/search?q=keyword` 
 
-### 3. Modern and Responsive UI
+### 3. User Interface
 
-- Clean layout
-- Smooth hover effects
-- Responsive for all screen sizes
+- Simple and clean design
+- Responsive
+- Each article shows:
+  - Title
+  - Source
+  - Date
+  - Short description
+  - Link to full article
 
 ## Technologies Used
 
 ### Backend
 - Deno
 - Hono
-- NewsAPI.org client via fetch
+- Fetch API (to get data from NewsAPI)
 - CORS enabled for local frontend
 
 ### Frontend
@@ -43,42 +48,26 @@ Uses backend route: GET /news/search?q=keyword
 Follow these steps to run the project locally.
 
 ### 1. Clone the Repository
-git clone https://github.com/katherinesebastin/NewsBoard  
-cd NewsBoard
+`git clone https://github.com/katherinesebastin/NewsBoard`   
+`cd NewsBoard`  
 
 ### 2. Backend Setup (Deno)
-Install Deno if not installed: https://deno.land/  
-Go to backend folder: cd backend  
-Create .env file: NEWSAPI_KEY=your_api_key_here  
-Start the backend server: deno run --allow-net --allow-env --allow-read main.ts  
-Backend runs at: http://localhost:8000
+Install Deno if not installed: `https://deno.land/`    
+Go to backend folder: `cd backend`    
+Create .env file inside the backend folder and add: `NEWSAPI_KEY=your_api_key_here`   
+You can get the API key from: `https://newsapi.org/`  
+Run backend server: `deno run --allow-net --allow-env --allow-read main.ts`    
+Backend runs at: `http://localhost:8000`  
 
 ### 3. Frontend Setup (React + Vite)
-Go to frontend folder: cd ../frontend  
-Install dependencies: npm install  
-Start development server: npm run dev  
-Frontend runs at: http://localhost:5173/
+Go to frontend folder: `cd ../frontend`    
+Install dependencies: `npm install`    
+Run frontend server: `npm run dev`    
+Frontend runs at: `http://localhost:5173/`
 
 ## API Endpoints (Backend)
-- Top Headlines  
-GET /news/top?country=us&pageSize=20
-
-- Search News  
-GET /news/search?q=apple&sortBy=publishedAt
-
-Backend internally calls:
-- https://newsapi.org/v2/top-headlines
-- https://newsapi.org/v2/everything
-
-## User Interface
-
-The UI includes:
-- Clean header with NewsBoard title and icon
-- Button for loading top headlines
-- Search bar
-- Professional article cards:
-  - Title
-  - Source
-  - Published date
-  - Description
-  - Link to full article
+- Top Headlines: `GET /news/top?country=us&pageSize=20`  
+- Search News: `GET /news/search?q=keyword`  
+Backend internally calls:  
+- `https://newsapi.org/v2/top-headlines`  
+- `https://newsapi.org/v2/everything`  
